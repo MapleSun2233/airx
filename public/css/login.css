@@ -1,0 +1,141 @@
+.banner .wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+.banner  h1{
+    color:white;
+    font-size:60px;
+}
+.color-gr{
+    color:#798eb1;
+}
+.top{
+    margin:30px 0 30px 0;
+    font-size:20px;
+}
+.top>a{
+    font-size:20px;
+    color:#00a1de;
+}
+.form-row{
+    width:400px;
+}
+.field-name{
+    flex:120px 0 0;
+    text-align: left;
+}
+.tabs {
+    border-bottom: 1px solid #f19858;
+}
+.tabs::before, .tabs::after {
+    content: '';
+    clear: both;
+    display: table;
+}
+.tabs > li {
+    float: left;
+    display: flex;
+}
+.tabs > li > a {
+    flex: 1;
+    display: block;
+    align-self: center;
+    line-height: 2.25em;
+    margin-right: 10px;
+    text-decoration: none;
+    color: #f19858;
+    font-weight: bold;
+    border: none;
+    padding: 0 1em;
+    height: 2.25em;
+    font-size: 0.9em;
+    cursor: pointer;
+    font-family: inherit;
+    text-transform: uppercase;
+    transition-duration: 300ms;
+}
+.tabs > li > a.active {
+    filter: brightness(0.9);
+    transition: 0s;
+    box-shadow: none;
+    background-color: #f19858;
+    color:white;
+}
+.tabs > li > a:hover {
+    filter: brightness(1.1);
+    box-shadow: 0 0 0.3em 0 #f19858;
+}
+.guest-info {
+    margin-top: 20px;
+    padding: 10px 30px;
+    border: 1px solid #e2e2e2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 0.2em;
+    background-color:#eee;
+    font-size:16px;
+}
+.guest-info>*{
+    flex:2;
+}
+.guest-info .form-group {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.guest-info .form-group label {
+    margin-right: 12px;
+    width: 72px;
+    display: inline-block;
+}
+.guest-name{
+    font-size:1.5em;
+}
+.input{
+    font-size:1em;
+    border: 1px solid #cde4fc;
+    padding-left: 10px;
+    transition: 0.1s;
+    border-radius: 0.25em;
+    background-color: #fcfefe;
+    color: #798eb1;
+}
+.input.big{
+    height: 40px;
+    line-height: 40px;
+}
+.guest-detail{
+    margin-left: 40px;
+    margin-right: 20px;
+    flex: 3;
+}
+.guest-detail .input {
+    width: 300px;
+}
+.input.mid {
+    height: 34px;
+    line-height: 34px;
+}
+.guest-info .info-button {
+    margin-top: 0;
+    text-align: right;
+}
+.info-button>button:first-child {
+    margin-right: 12px;
+}
+.guest-btn{
+    color: white;
+    background-color: #f19858;
+    font-weight: bold;
+    border: none;
+    padding:0 1em;
+    height: 2.25em;
+    font-size: 0.9em;
+    cursor: pointer;
+    font-family: inherit;
+    text-transform: uppercase;
+    transition-duration: 300ms;
+    border-radius: .2em;
+    font-size:16px;
+}

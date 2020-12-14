@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Storage;
 use App\Flights;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -38,5 +38,8 @@ class RouterController extends Controller
                 'class'=>$request->class,
                 'flights'=>$flights]);
         }
+    }
+    public function download(Request $request,$filename){
+        return Storage::download("public/".$filename.'.txt');
     }
 }

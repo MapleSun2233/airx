@@ -58,116 +58,29 @@
 						</div>
 					</div>
 				</div>
-				// 以下未适配完成
-				<form class="guest-info" method="post" action="result.html">
+				<form class="guest-info" method="post" action="/dealbuyinfo">
+				@csrf
+				<input style='display:none;' type="text" name='flight_id' value="{{$flight['id']}}" />
+				<input style='display:none;' type="text" name='travel_class' value="{{$travelClass}}" />
 					<div class="title-line">
 						<b class="cl-md fz-24 bg-wt">Guest Info</b>
 					</div>
 					<div class="info-content fz-18">
 						<div class="guest-list">
 							<span class="fw-bd cl-dk">Saved Guests:</span>
-							<div class="guest-option br-sm cl-dk bg-lt selected" data-guest="1">Steven Dragon</div>
-							<div class="guest-option br-sm cl-dk bg-lt" data-guest="2">Tester I</div>
-							<div class="guest-option br-sm cl-dk bg-lt selected" data-guest="3">Tester II</div>
+							@foreach($guests as $guest)
+								<div class="guest-option br-sm cl-dk bg-lt" data-id="{{$guest['id']}}" onclick='changeClass(this)'>
+									<input style='display:none;' type="checkbox" value="{{$guest['id']}}" name='guests[]' />
+									{{$guest['guest_name']}}
+								</div>
+							@endforeach
 							<div class="add-guest br-sm cl-dk bg-lt">+</div>
 						</div>
 						<div class="guest-detail flex">
-							<div class="guest-form br-sm" data-guest="1">
-								<div class="form-row flex">
-									<div class="field-name cl-gr">NAME</div>
-									<div class="field-input"><input type="text" title="name" class="input mid" name="name" value="Steven Dragon" readonly=""></div>
-								</div>
-								<div class="form-row flex">
-									<div class="field-name cl-gr">PHONE</div>
-									<div class="field-input"><input type="text" title="phone" class="input mid" name="phone" value="1234569874" readonly=""></div>
-								</div>
-								<div class="form-row flex">
-									<div class="field-name cl-gr">GENDER</div>
-									<div class="field-input">
-										<select title="gender" class="input mid" name="gender" disabled="">
-											<option selected="" value="m">Male</option>
-											<option value="f">Female</option>
-										</select>
-									</div>
-								</div>
-								<div class="form-row flex">
-									<div class="field-name cl-gr">ID CARD</div>
-									<div class="field-input"><input type="text" title="id_card" class="input mid" name="id_card" value="45648945216545" readonly=""></div>
-								</div>
-							</div>
-							<div class="guest-form br-sm" data-guest="2">
-								<div class="form-row flex">
-									<div class="field-name cl-gr">NAME</div>
-									<div class="field-input"><input type="text" title="name" class="input mid" name="name" value="Tester I" readonly=""></div>
-								</div>
-								<div class="form-row flex">
-									<div class="field-name cl-gr">PHONE</div>
-									<div class="field-input"><input type="text" title="phone" class="input mid" name="phone" value="13164556745" readonly=""></div>
-								</div>
-								<div class="form-row flex">
-									<div class="field-name cl-gr">GENDER</div>
-									<div class="field-input">
-										<select title="gender" class="input mid" name="gender" disabled="">
-											<option value="m">Male</option>
-											<option selected="" value="f">Female</option>
-										</select>
-									</div>
-								</div>
-								<div class="form-row flex">
-									<div class="field-name cl-gr">ID CARD</div>
-									<div class="field-input"><input type="text" title="id_card" class="input mid" name="id_card" value="211145587451154221" readonly=""></div>
-								</div>
-							</div>
-							<div class="guest-form br-sm" data-guest="3">
-								<div class="form-row flex">
-									<div class="field-name cl-gr">NAME</div>
-									<div class="field-input"><input type="text" title="name" class="input mid" name="name" value="Tester II" readonly=""></div>
-								</div>
-								<div class="form-row flex">
-									<div class="field-name cl-gr">PHONE</div>
-									<div class="field-input"><input type="text" title="phone" class="input mid" name="phone" value="12345678912" readonly=""></div>
-								</div>
-								<div class="form-row flex">
-									<div class="field-name cl-gr">GENDER</div>
-									<div class="field-input">
-										<select title="gender" class="input mid" name="gender" disabled="">
-											<option selected="" value="m">Male</option>
-											<option value="f">Female</option>
-										</select>
-									</div>
-								</div>
-								<div class="form-row flex">
-									<div class="field-name cl-gr">ID CARD</div>
-									<div class="field-input"><input type="text" title="id_card" class="input mid" name="id_card" value="123456789123456789" readonly=""></div>
-								</div>
-							</div>
-							<div class="guest-form br-sm">
-								<button type="button" class="remove-button bt-lt br-sm">remove</button>
-								<div class="form-row flex">
-									<div class="field-name cl-gr">NAME</div>
-									<div class="field-input"><input type="text" title="name" class="input mid" name="name"></div>
-								</div>
-								<div class="form-row flex">
-									<div class="field-name cl-gr">PHONE</div>
-									<div class="field-input"><input type="text" title="phone" class="input mid" name="phone"></div>
-								</div>
-								<div class="form-row flex">
-									<div class="field-name cl-gr">GENDER</div>
-									<div class="field-input">
-										<select title="gender" class="input mid" name="gender">
-											<option value="m">Male</option>
-											<option value="f">Female</option>
-										</select>
-									</div>
-								</div>
-								<div class="form-row flex">
-									<div class="field-name cl-gr">ID CARD</div>
-									<div class="field-input"><input type="text" title="id_card" class="input mid" name="id_card"></div>
-								</div>
-							</div>
+							
 						</div>
 						<div class="confirm ta-rt">
-							<button class="bt-lt br-sm">CONFIRM &gt;</button>
+							<button class="bt-lt br-sm" type='submit'>CONFIRM &gt;</button>
 						</div>
 					</div>
 				</form>
@@ -175,7 +88,20 @@
 		</div>
 		</main>
 		<script>
+		let newGuestTemplate = "<div class='guest-form br-sm'><button type='button' class='remove-button bt-lt br-sm' onclick='removeSelf(this)'>remove</button><div class='form-row flex'><div class='field-name cl-gr'>NAME</div><div class='field-input'><input type='text' title='name' class='input mid' name='name[]' required></div></div><div class='form-row flex'><div class='field-name cl-gr'>PHONE</div><div class='field-input'><input type='text' title='phone' class='input mid' name='phone[]' required></div></div><div class='form-row flex'><div class='field-name cl-gr'>GENDER</div><div class='field-input'><select title='gender' class='input mid' name='gender[]'><option value='male'>Male</option><option value='female'>Female</option></select></div></div><div class='form-row flex'><div class='field-name cl-gr'>ID CARD</div><div class='field-input'><input type='text' title='id_card' class='input mid' name='id[]' required></div></div></div>";
+		function removeSelf(btn){
+			$(btn).parent().remove();
+		}
+		function changeClass(div){
+			if($(div).hasClass('selected'))
+				$(div).removeClass('selected').children().get(0).checked = false;
+			else
+				$(div).addClass('selected').children().get(0).checked = true;
+		}
 		$(function(){
+			$('.add-guest').click(function(){
+				$('.guest-detail').append($(newGuestTemplate));
+			});
 		});
 		</script>
 		<footer>

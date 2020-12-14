@@ -10,21 +10,17 @@ class AccountController extends Controller
 {
     //
     public function show(Request $request){
-        if($request->session()->get('loginStatus')){
-            $result = User::where('username',$request->session()->get('loginStatus'))->get();
-            $guests = Guests::where('user_id',$result[0]->id)->get();
-            return view('user')->with([
-                'userData'=>[
-                    'username'=>$result[0]->username,
-                    'email'=>$result[0]->email,
-                    'gender'=>$result[0]->gender,
-                    'phone'=>$result[0]->phone
-                ],
-                'guestsData'=>$guests->toArray()
-            ]);
-        }else{
-            return redirect('login')->with('message','Login first, Please !');
-        }
+        $result = User::where('username',$request->session()->get('loginStatus'))->get();
+        $guests = Guests::where('user_id',$result[0]->id)->get();
+        return view('user')->with([
+            'userData'=>[
+                'username'=>$result[0]->username,
+                'email'=>$result[0]->email,
+                'gender'=>$result[0]->gender,
+                'phone'=>$result[0]->phone
+            ],
+            'guestsData'=>$guests->toArray()
+        ]);
     }
     public function edit(Request $request){
         $user = User::find($request->session()->get('loginID'));

@@ -68,6 +68,9 @@ class TicketController extends Controller
         }
         // 存入数据库
         for($i = 0 ; $i < count($orderedGuestsIds); $i++){
+            // 同一班次同一人不能持有多张票
+            if(Tickets::where('guest_id',$orderedGuestsIds[$i])->where('flight_id',$flightID)->get()->toArray())
+                continue;
             $tickets = new Tickets();
             $tickets->user_id = $user_id;
             $tickets->guest_id = $orderedGuestsIds[$i];

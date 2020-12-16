@@ -17,6 +17,8 @@ Route::get('/', 'RouterController@index');
 Route::match(['post','get'],'/search','RouterController@store');
 Route::match(['post','get'],'/login','LoginController@login');
 Route::match(['post','get'],'/register','LoginController@register');
+Route::match(['post','get'],'/check_in',"CheckInController@show");
+Route::post('/searchid',"CheckInController@showByID");
 Route::middleware('check.login')->group(function(){
     Route::get('/exit','LoginController@exit');
     Route::get('/buy/{id}/{travelClass}','TicketController@buy');
@@ -26,4 +28,5 @@ Route::middleware('check.login')->group(function(){
     Route::get('/deleteguest',"AccountController@deleteGuest");
     Route::post('/dealbuyinfo',"TicketController@dealBuyInfo");
     Route::get('/download/{filename}',"RouterController@download");
+    Route::get('/searchaccount',"CheckInController@showByAccount");
 });

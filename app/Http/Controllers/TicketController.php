@@ -32,21 +32,21 @@ class TicketController extends Controller
         $user_id = $request->session()->get('loginID');
         // 防止没有新用户
         if($newNames)
-        for($i = 0 ; $i < count($newNames) ; $i++){
-            // 防止新键用户与已有用户重复
-            if(Guests::where('guest_card',$newCards[$i])->get())
-                continue; 
-            // 增加乘客信息
-            $guests = new Guests();
-            $guests->user_id = $user_id;
-            $guests->guest_name = $newNames[$i];
-            $guests->guest_phone = $newPhones[$i];
-            $guests->guest_gender = $newGenders[$i];
-            $guests->guest_card = $newCards[$i];
-            $guests->save();
-            $id = $guests->id;
-            array_push($orderedGuestsIds,$id);
-        }
+            for($i = 0 ; $i < count($newNames) ; $i++){
+                // 防止新键用户与已有用户重复
+                if(Guests::where('guest_card',$newCards[$i])->get()->toArray())
+                    continue; 
+                // 增加乘客信息
+                $guests = new Guests();
+                $guests->user_id = $user_id;
+                $guests->guest_name = $newNames[$i];
+                $guests->guest_phone = $newPhones[$i];
+                $guests->guest_gender = $newGenders[$i];
+                $guests->guest_card = $newCards[$i];
+                $guests->save();
+                $id = $guests->id;
+                array_push($orderedGuestsIds,$id);
+            }
         //处理订票信息
         $flightID = $request->flight_id;
         $travelClass = $request->travel_class;

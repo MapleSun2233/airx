@@ -73,7 +73,18 @@ class CheckInController extends Controller
         }
         return $searchResult;
     }
+    // 提供选座数据
     public function selectSeat($ticketID){
-        dd(json_decode($ticketID));
+        $tickets = json_decode($ticketID);
+        $guests = [];
+        $ticket = Tickets::where('id',$tickets[0])->get()->toArray()[0];
+        $flightID = $ticket['flight_id'];
+        $flight  = Flights::where('id',$flightID)->get()->toArray()[0];
+        $flight['class_type'] = $ticket['class_type'];
+        foreach($tickets as $ticket){
+            $guest = Guests::where('id',Tickets::where('id',$ticket)->get()->toArray()[0]['guest_id'])->get()->toArray()[0]['guest_name'];
+            array_push($guests,$guest);
+        }
+        return view('select_seat')->with(['guests'=>$guests,'flight'=>$flight,'tickets'=>$tickets]);
     }
 }

@@ -48,7 +48,7 @@
                         </div>
                     </div>
                     <div class="order-col ct-ctn">
-                        <a href="/select_seat/{{$item['ticket_id']}}">
+                        <a href="/select_seat/[{{$item['ticket_id']}}]">
                             <button class="check-in-button ct-ele bt-lt br-sm">CHECK IN &gt;</button>
                         </a>
                     </div>

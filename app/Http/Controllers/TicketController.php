@@ -24,7 +24,7 @@ class TicketController extends Controller
     }
     public function dealBuyInfo(Request $request){
         // 获取到提交上来的数据数组
-        $orderedGuestsIds = $request->guests;
+        $orderedGuestsIds = $request->guests ? $request->guests : [];
         $newNames = $request->name;
         $newPhones = $request->phone;
         $newGenders = $request->gender;
@@ -80,7 +80,7 @@ class TicketController extends Controller
             $tickets->save();
         }
         // 生成文件内容
-        $text = "Your ticket(s) of flight UB4874 have been successfully purchased.\n\nThis order contains following contents:".count($orderedGuestsInfo)." AIRX flight ticket(s) of flight ".$no." (".$travelClass.").\n\nThe guests are:\n\n";
+        $text = "Your ticket(s) of flight ".$no." have been successfully purchased.\n\nThis order contains following contents:".count($orderedGuestsInfo)." AIRX flight ticket(s) of flight ".$no." (".$travelClass.").\n\nThe guests are:\n\n";
         foreach($orderedGuestsInfo as $guest){
             $text .= "\t".$guest['guest_name'].", ID Card:".$guest['guest_id']."\n";
         }

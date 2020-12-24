@@ -20,7 +20,7 @@ class CreateTicketsTable extends Migration
             $table->string("class_type");
             $table->dateTime("order_time");
             $table->integer("flight_id");
-            $table->integer("seat_num")->nullable();
+            $table->string("seat_num")->nullable();
             $table->enum("order_status",["check-in available","check-in"])->default("check-in available");
         });
     }

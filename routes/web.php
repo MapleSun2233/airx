@@ -20,6 +20,8 @@ Route::match(['post','get'],'/register','LoginController@register');
 Route::match(['post','get'],'/check_in',"CheckInController@show");
 Route::post('/searchid',"CheckInController@showByID");
 Route::get('/select_seat/{ticketID}',"CheckInController@selectSeat");
+Route::post('/deal_select_result',"CheckInController@dealSelectResult");
+Route::get('/select_result/{ticketID}',"CheckInController@seatResult");
 Route::middleware('check.login')->group(function(){
     Route::get('/exit','LoginController@exit');
     Route::get('/buy/{id}/{travelClass}','TicketController@buy');

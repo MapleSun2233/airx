@@ -34,7 +34,7 @@ class TicketController extends Controller
         if($newNames)
             for($i = 0 ; $i < count($newNames) ; $i++){
                 // 防止新键用户与已有用户重复
-                if(Guests::where('guest_card',$newCards[$i])->get()->toArray())
+                if(Guests::where('guest_card',$newCards[$i])->where('user_id',$user_id)->get()->toArray())
                     continue; 
                 // 增加乘客信息
                 $guests = new Guests();

@@ -10,7 +10,7 @@ class AccountController extends Controller
 {
     //
     public function show(Request $request){
-        $result = User::where('username',$request->session()->get('loginStatus'))->get();
+        $result = User::where('id',$request->session()->get('loginID'))->get();
         $guests = Guests::where('user_id',$result[0]->id)->get();
         return view('user')->with([
             'userData'=>[
@@ -29,6 +29,8 @@ class AccountController extends Controller
         $user->gender = $request->gender;
         $user->phone = $request->phone;
         $user->save();
+        $request->session()->forget('loginStatus');
+        $request->session()->put('loginStatus',$request->username);
         return redirect('/account');
     }
     public function modifyGuest(Request $request){

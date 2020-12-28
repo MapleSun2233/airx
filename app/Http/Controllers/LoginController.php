@@ -15,8 +15,7 @@ class LoginController extends Controller
             return view('login');
         }else{
             $result = User::where('username',$request->username)->get();
-            $password = $result->toArray()[0]['password'];
-            if(count($result) == 1 && $password == $request->password){
+            if(count($result) == 1 && $result->toArray()[0]['password'] == $request->password){
                 $request->session()->put('loginID',$result[0]->id);
                 $request->session()->put('loginStatus',$result[0]->username);
                 return redirect('/account');

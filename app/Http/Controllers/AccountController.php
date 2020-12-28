@@ -24,6 +24,7 @@ class AccountController extends Controller
     }
     public function edit(Request $request){
         $user = User::find($request->session()->get('loginID'));
+        $user->username = $request->username;
         $user->password = $request->password;
         $user->gender = $request->gender;
         $user->phone = $request->phone;

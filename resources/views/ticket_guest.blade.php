@@ -49,7 +49,11 @@
                     </div>
                     <div class="order-col ct-ctn">
                         <a href="/select_seat/[{{$item['ticket_id']}}]">
+                        @if($item['ticket_status']=='check-in')
+                            <button class="check-in-button ct-ele bt-lt br-sm" disabled style='cursor:not-allowed'>CHECK IN &gt;</button>
+                        @else
                             <button class="check-in-button ct-ele bt-lt br-sm">CHECK IN &gt;</button>
+                        @endif
                         </a>
                     </div>
                 </div>
